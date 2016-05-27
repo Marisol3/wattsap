@@ -7,14 +7,21 @@
 	  	<meta name="viewport" content="width=device-width, initial-scale=1">
 	  	<link rel="shortcut icon" href="image/favicon.png" type="image/png">
 	  	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600%7CRoboto:300,400,500" media="all">
+	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	  	
+	  	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+
 	  	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 		<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 
-		<style>
+	<style>
+
+	*{outline: 1px solid rgba(255,0,0,0.5);}*
 		#bienvenida
 		{
 			border: 1px solid #CCC;
 			margin: 10px;
+
 		}
 		#chat
 		{
@@ -22,44 +29,202 @@
 			border: 1px solid #CCC;
 			display: none;
 		}
-	    </style>
+		.foto{
+			border-radius: 90%;
+			max-width: 7%;
+			padding: 2% 0%;
+			}
+		
+		#fondo
+		{
+			background: url(http://www.wallpapersxl.com/wallpapers/850x516/winnie-pooh/61078/winnie-pooh-the-disney-desktop-s-world-61078.jpg);
+			
+		
+			background-size: cover;
+			height: 800px;
+		}
+		#title{
+			text-align: center;
+			font-size: 50px;
+			font-family: fantasy;
+		}
+		.container{
+			margin-top: -700px;
+		}
+		.header{
+			background-color:#fff;
+		}
+		.header img{
+			border-radius: 100%;
+		}
+		.blanco{
+			background: url("image/fondis.jpg");
+	
 
+		}
+		.buscar{
+			border: 1px solid #000;
+		}
+		.buscar input{
+			border:none;
+		}
+		
+		.miel{
+
+			background-size: cover;
+			background: url("image/fondis.jpg");
+			height: auto;
+		}
+		.ovalado{
+			width: 30px;
+			border-radius: 90px;
+			margin: 5px 9px;
+		}
+		
+		.lista{
+			overflow: auto;
+			height: 208px;
+			background-color: #FFD433;
+
+
+		}
+		.amigos{
+			list-style: none;
+		}
+
+		@media(max-width:750px){
+			.foto{
+				max-width: 60px;
+			}
+			#bienvenida{
+				width: 300px;
+			}
+			
+		}
+	</style>
 	</head>
 	<body>
-		<div id=bienvenida>
+	<div  class="container-fluid ">
+	<div   id="fondo" class="row"  >
+		<h1 class="text-center">CHAT-FRIEND</h1>
+	</div>					
+	</div>
+	<div class="container">
+		<div class="row header">
+			<div class="col-md-5  blanco">
+				<img src="image/gatis.jpg" width="50px">
+				<i class=" icono1 pull-right glyphicon glyphicon-option-vertical"></i>
+				<i class="icono1 pull-right glyphicon glyphicon-comment"></i>
+			</div>
+			<div class="col-md-7">
+				<img src="image/miau.jpg" width="50px">MI CHAT PERÚ
+				<i class="icono1 pull-right glyphicon glyphicon-option-vertical"></i>
+				<i class=" icono1 pull-right glyphicon glyphicon-paperclip"></i>
+			</div>
+		</div>
+		<div class="row miel">
+			<div class="col-md-5 blanco">
+				<div class="buscar">
+				<i class="glyphicon glyphicon-search"></i>
+				<input type="text" placeholder="Buscar o empezar un chat nuevo">
+
+				</input>
+				</div>
+				<div class="lista">
+				<ul>
+					<li class="amigos"><img class="ovalado" src="image/anamaria.jpg">Ariana</li>
+					<li class="amigos"><img class="ovalado" src="image/mariana.jpg">Susana</li>
+					<li class="amigos"><img class="ovalado" src="image/raymi.jpg">Laura</li>
+					<li class="amigos"><img class="ovalado" src="image/andrea.jpg">Rosa</li>
+					<li class="amigos"><img class="ovalado" src="image/jose.jpg">Milagros</li>
+					<li class="amigos"><img class="ovalado" src="image/mariapaula.jpg">Paula</li>
+				</ul>
+				</div>
+			</div>
+			<div class="col-md-7 ">
+			<div id=bienvenida>
 			<h3>Hola!!</h3>
 			<input type=text id="usuario" ></input>
 			<button onclick=getuser()>Entra</button>
-		</div>
-		<div id=chat>
+		
+			<div
+				class="fb-like"
+				data-share="true"
+				data-width="450"
+				data-show-faces="true">
+			</div>
+			</div>
+			<div id=chat>
 			<input type="text" id="mensaje"></input>
 			<button onclick=enviarmensaje()>Enviar</button>
 			<button onclick=limpaiarmensajes()>Limpiar</button>
-		<ul id="lista_mensajes"></ul>
+			<ul id="lista_mensajes"></ul>
+			</div>
+			</div>
 		</div>
+	</div>
 
-		<script>
+	
+	
+		
+
+
+
+
+
+
+
+
+			<script>
+ 			 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r]l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ 			 ga('create', 'UA-78208911-1', 'auto');
+ 			 ga('send', 'pageview');
+
+			</script>
+		
+			<script>
+ 			 window.fbAsyncInit = function() {
+   			 FB.init({
+     		 appId      : '1751573341746693',
+     		 xfbml      : true,
+     		 version    : 'v2.6'
+   			 });
+ 			 };
+
+ 			 (function(d, s, id){
+    		 var js, fjs = d.getElementsByTagName(s)[0];
+    		 if (d.getElementById(id)) {return;}
+    	 	js = d.createElement(s); js.id = id;
+    		 js.src = "//connect.facebook.net/en_US/sdk.js";
+     		fjs.parentNode.insertBefore(js, fjs);
+  			 }(document, 'script', 'facebook-jssdk'));
+			</script>
+
+
+			<script>
 			var user;
 			var socket=io('/');
-		function getuser(){
+			function getuser(){
 			user=$('#usuario').val();
 			$('#bienvenida').hide();
 			$('#chat').show();
-		}	
-		function enviarmensaje()
-		{
+			}	
+			function enviarmensaje()
+			{
 			socket.emit('chat' , '<span>' + user + '</span> :'  + $('#mensaje').val());
 			$('#mensaje').val('');
 			$('#mensaje').focus();
-		}
-		function limpaiarmensajes()
-		{
+			}
+			function limpaiarmensajes()
+			{
 			$('#lista_mensajes').html('');
-		}
-		socket.on('nuevo_mensaje', function(_msg)
-		{
+			}
+			socket.on('nuevo_mensaje', function(_msg)
+			{
 			$('#lista_mensajes').append('<li>' + _msg + '</li>'); 
-		});
-		</script>
+			});
+			</script>
 	</body>
+		
 </html>
